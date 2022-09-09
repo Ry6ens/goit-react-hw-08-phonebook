@@ -1,17 +1,11 @@
 import Notiflix from "notiflix";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import {
   fetchPostContacts,
   fetchGetContacts,
   fetchDeleteContacts,
 } from "../services/api";
-import {
-  getContacts,
-  removeContacts,
-  postContact,
-} from "./contacts/contacts-slice";
-import { setError, resetError } from "./error/errorSlice";
-import { onLoader, offLoader } from "./loader/loaderSlice";
 
 const isDuplicate = ({ name }, contacts) => {
   const normalizedName = name.toLowerCase();
@@ -23,44 +17,50 @@ const isDuplicate = ({ name }, contacts) => {
   return Boolean(result);
 };
 
-export const postContactsOperations = (data) => {
-  return async (dispatch, getState) => {
-    const { contacts } = getState();
-    if (isDuplicate(data, contacts.items)) {
-      return Notiflix.Notify.warning(`${data.name} is already exists`);
+//Fetch contacts
+export const getContactsOperations = createAsyncThunk(
+  "contacts/fetch",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await fetchGetContacts();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
     }
+  }
+);
+
+// Add contacts
+export const postContactsOperations = createAsyncThunk(
+  "contacts/add",
+  async (data, { rejectWithValue }) => {
     try {
       const contact = await fetchPostContacts(data);
-      console.log(contact.data);
-      dispatch(postContact(contact.data));
+      return contact.data;
     } catch (error) {
-      dispatch(setError(error.message));
+      return rejectWithValue(error);
     }
-  };
-};
+  },
+  {
+    condition: (data, { getState }) => {
+      const { contacts } = getState();
+      if (isDuplicate(data, contacts.items)) {
+        Notiflix.Notify.warning(`${data.name} is already exists`);
+        return false;
+      }
+    },
+  }
+);
 
-export const getContactsOperations = () => {
-  return async (dispatch) => {
-    try {
-      dispatch(resetError(null));
-      dispatch(onLoader());
-      const { data } = await fetchGetContacts();
-      dispatch(getContacts(data));
-      dispatch(offLoader());
-    } catch (error) {
-      dispatch(setError(error.message));
-      dispatch(offLoader());
-    }
-  };
-};
-
-export const removeContactsOperation = (id) => {
-  return async (dispatch) => {
+//Remove contacts
+export const removeContactsOperation = createAsyncThunk(
+  "contacts/remove",
+  async (id, { rejectWithValue }) => {
     try {
       await fetchDeleteContacts(id);
-      dispatch(removeContacts(id));
+      return id;
     } catch (error) {
-      dispatch(setError(error.message));
+      return rejectWithValue(error);
     }
-  };
-};
+  }
+);

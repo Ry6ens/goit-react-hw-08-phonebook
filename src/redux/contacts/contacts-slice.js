@@ -1,16 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import {
+  getContactsOperations,
+  postContactsOperations,
+  removeContactsOperation,
+} from "../operations";
+
+// const initialState = {
+//   items: [],
+//   loading: false,
+//   error: null,
+// };
+
 export const getContactsSlice = createSlice({
   name: "contacts",
   initialState: [],
-  reducers: {
-    getContacts: (_, { payload }) => payload,
-    postContact: (state, { payload }) => {
-      console.log(payload);
-      state.push(payload);
+  extraReducers: {
+    [getContactsOperations.fulfilled]: (_, { payload }) => {
+      return payload;
     },
-    removeContacts: (state, { payload }) => {
-      return state.filter((el) => el.id !== payload);
+    [postContactsOperations.fulfilled]: (store, { payload }) => {
+      store.push(payload);
+    },
+    [removeContactsOperation.fulfilled]: (store, { payload }) => {
+      return store.filter((el) => el.id !== payload);
     },
   },
 });
