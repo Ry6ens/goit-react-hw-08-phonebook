@@ -1,0 +1,54 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px 0px;
+}
+
+.thumb {
+    display: flex;
+    gap: 40px
+}
+
+.link {
+    padding: 5px 5px;
+
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3;
+
+
+    &:hover,
+    :focus {
+        color: #F9B300 
+    }
+}
+
+.link svg path {
+
+    &:hover,
+    :focus {
+    fill: #F9B300;
+        stroke: #F9B300;
+    }
+}
+
+.activeLink {
+    padding: 5px 5px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    border-bottom: 3px solid #F9B300;
+
+    &:hover,
+        :focus {
+            color: #F9B300
+        }
+
+}
+
+.activeLink svg path {
+    fill: #F9B300;
+    stroke: #F9B300;
+}

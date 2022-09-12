@@ -1,14 +1,16 @@
 {
-  "name": "goit-react-hw-07-phonebook-thunk",
+  "name": "goit-react-hw-08-phonebook",
   "version": "0.1.0",
-  "homepage": "https://ry6ens.github.io/goit-react-hw-07-phonebook-thunk",
+  "homepage": "https://ry6ens.github.io/goit-react-hw-08-phonebook",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "bootstrap": "^5.2.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
