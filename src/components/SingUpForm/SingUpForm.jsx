@@ -1,72 +1,112 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { nanoid } from "@reduxjs/toolkit";
 
-// import styles from "./SingUpForm.module.scss";
-import "./SingUpForm.css";
+import styles from "./SingUpForm.module.scss";
 import { ReactComponent as Close } from "../../images/iconClose.svg";
 
 export default function SingUpForm() {
   const navigate = useNavigate();
 
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const { name, email, password, confirmPassword } = state;
+
+  const nameId = nanoid();
+  const emailId = nanoid();
+  const passwordId = nanoid();
+  const confirmPasswordId = nanoid();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    e.target.reset(
+      setState({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      })
+    );
+  };
+
+  const handleChange = ({ target }) => {
+    setState((prevState) => {
+      return { ...prevState, [target.name]: target.value };
+    });
+  };
+
   return (
-    <div className="modal__container">
-      <div className="contt">
-        <div className="form sign-in">
-          <h2 className="titleH2">Sign In</h2>
-          <Link to="" className="closeBtn" onClick={() => navigate(-1)}>
+    <div className={styles.modal__container}>
+      <div className={styles.cont}>
+        <div className={styles.formSignIn}>
+          <h2 className={styles.titleH2}>Sign Up</h2>
+          <Link to="" className={styles.closeBtn} onClick={() => navigate(-1)}>
             <Close />
           </Link>
-          <form action="">
-            <label>
-              <span>Email Address</span>
-              <input type="email" name="email" />
+          <form onSubmit={handleSubmit}>
+            <label htmlFor={nameId} className={styles.label}>
+              <span>Name</span>
+              <input
+                className={styles.input}
+                onChange={handleChange}
+                id={nameId}
+                type="name"
+                name="name"
+                value={name}
+                required
+              />
             </label>
-            <label>
+            <label htmlFor={emailId} className={styles.label}>
+              <span>Email</span>
+              <input
+                className={styles.input}
+                onChange={handleChange}
+                id={emailId}
+                type="email"
+                name="email"
+                value={email}
+                required
+              />
+            </label>
+            <label htmlFor={passwordId} className={styles.label}>
               <span>Password</span>
-              <input type="password" name="password" />
+              <input
+                className={styles.input}
+                onChange={handleChange}
+                id={passwordId}
+                type="password"
+                name="password"
+                value={password}
+                required
+              />
             </label>
-            <button className="submit" type="button">
-              Sign In
+            <label htmlFor={confirmPasswordId} className={styles.label}>
+              <span>confirm Password</span>
+              <input
+                className={styles.input}
+                onChange={handleChange}
+                id={confirmPasswordId}
+                type="confirmPassword"
+                name="confirmPassword"
+                value={confirmPassword}
+                required
+              />
+            </label>
+            <button className={styles.submit} type="submit">
+              Sign Up Now
             </button>
           </form>
-
-          <p className="forgot-pass">Forgot Password ?</p>
-
-          <div className="social-media">
-            <ul>
-              <li>
-                <img
-                  src="https://raw.githubusercontent.com/abo-elnoUr/public-assets/master/facebook.png"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  src="https://raw.githubusercontent.com/abo-elnoUr/public-assets/master/twitter.png"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  src="https://raw.githubusercontent.com/abo-elnoUr/public-assets/master/linkedin.png"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img
-                  src="https://raw.githubusercontent.com/abo-elnoUr/public-assets/master/instagram.png"
-                  alt=""
-                />
-              </li>
-            </ul>
-          </div>
         </div>
-        <div className="sub-cont">
-          <div className="img">
-            <div className="img-text m-up">
-              <h2 className="titleH2">One of us?</h2>
-              <p>
-                If you already has an account, just sign in. We've missed you!
-              </p>
+        <div className={styles.subCont}>
+          <div className={styles.img}>
+            <div className={styles.imgText}>
+              <h2 className={styles.titleH2}>New here?</h2>
+              <p>Sign Up and discover great amount of new opportunities!</p>
             </div>
           </div>
         </div>
@@ -74,3 +114,5 @@ export default function SingUpForm() {
     </div>
   );
 }
+
+//m-up

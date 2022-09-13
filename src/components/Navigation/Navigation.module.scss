@@ -20,7 +20,7 @@
 
     &:hover,
     :focus {
-        color: #F9B300 
+        color: #7579ff
     }
 }
 
@@ -28,8 +28,8 @@
 
     &:hover,
     :focus {
-    fill: #F9B300;
-        stroke: #F9B300;
+        fill: #7579ff;
+        stroke: #7579ff;
     }
 }
 
@@ -39,16 +39,16 @@
     font-size: 14px;
     font-weight: 500;
 
-    border-bottom: 3px solid #F9B300;
+    border-bottom: 3px solid #7579ff;
 
     &:hover,
-        :focus {
-            color: #F9B300
-        }
+    :focus {
+        color: #7579ff
+    }
 
 }
 
 .activeLink svg path {
-    fill: #F9B300;
-    stroke: #F9B300;
+    fill: #7579ff;
+    stroke: #7579ff;
 }

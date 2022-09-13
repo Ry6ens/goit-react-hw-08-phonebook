@@ -25,7 +25,7 @@
     fill: #7579ff;
 }
 
-.formLogIn {
+.formSignIn {
     position: relative;
     width: 440px;
     height: 100%;
@@ -34,6 +34,10 @@
     transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+
+    padding-top: 65px;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
 }
 
 .titleH2 {
@@ -89,45 +93,11 @@
     }
 }
 
-.forgotPass {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    color: #0c0101;
-    cursor: pointer;
-
-    &:hover {
-        color: red;
-    }
-}
-
-.socialMedia {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.socialMedia ul {
-    list-style: none;
-}
-
-.socialMedia ul li {
-    display: inline-block;
-    cursor: pointer;
-    margin: 25px 15px;
-}
-
-.socialMedia img {
-    width: 40px;
-    height: 40px;
-}
-
 .subCont {
     overflow: hidden;
-    // position: absolute;
+    position: relative;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100%;
     padding-left: 260px;
     background: #fff;
@@ -140,7 +110,7 @@
     overflow: hidden;
     z-index: 2;
     position: absolute;
-    left: 0;
+    right: 0;
     top: 0;
     width: 260px;
     height: 100%;
@@ -157,7 +127,6 @@
         background-size: cover;
         transition: -webkit-transform 1.2s ease-in-out;
         transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
-    transform: translate3d(640px, 0, 0);
     }
 
     &:after {
