@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+// import { useState } from "react";
+
 import { Container } from "./components/Container/Container";
 import Home from "./pages/Home";
 import Contacts from "./pages/Contacts";
@@ -14,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/goit-react-hw-08-phonebook" element={<Home />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />} />
         </Routes>
       </Container>

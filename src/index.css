@@ -15,7 +15,10 @@ code {
     monospace;
 }
 
-* {
+*,
+h1,
+h2,
+h3 {
   margin: 0;
   padding: 0;
 }
@@ -27,4 +30,11 @@ li {
 a {
     color: rgb(65, 65, 65);
   text-decoration: none;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  background: none;
 }
