@@ -1,13 +1,32 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { fetchSignUp, fetchLogIn } from "../../services/apiAuth";
 
-axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
+export const signup = createAsyncThunk(
+  "auth/signup",
+  async (data, { rejectWithValue }) => {
+    console.log(data);
 
-const register = createAsyncThunk("auth/register", async (credentails) => {
-  try {
-    const data = await axios.post("users/signup", credentails);
-    return data;
-  } catch (error) {
-    console.log(error.message);
+    try {
+      const result = await fetchSignUp(data);
+      return result;
+    } catch (error) {
+      rejectWithValue(error);
+      console.log(error.message);
+    }
   }
-});
+);
+
+export const login = createAsyncThunk(
+  "auth/login",
+  async (data, { rejectWithValue }) => {
+    console.log(data);
+    try {
+      const result = await fetchLogIn(data);
+      console.log(result);
+      return result;
+    } catch (error) {
+      rejectWithValue(error);
+      console.log(error.message);
+    }
+  }
+);

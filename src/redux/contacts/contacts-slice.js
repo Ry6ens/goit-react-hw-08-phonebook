@@ -6,12 +6,6 @@ import {
   removeContactsOperation,
 } from "../operations";
 
-// const initialState = {
-//   items: [],
-//   loading: false,
-//   error: null,
-// };
-
 export const getContactsSlice = createSlice({
   name: "contacts",
   initialState: [],

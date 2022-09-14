@@ -23,9 +23,9 @@ h3 {
   padding: 0;
 }
 
-li {
+/* li {
   list-style-type: none;
-}
+} */
 
 a {
     color: rgb(65, 65, 65);
@@ -37,4 +37,9 @@ button {
   border: none;
   outline: none;
   background: none;
+}
+
+*, ::after,
+::before {
+  box-sizing: border-box;
 }

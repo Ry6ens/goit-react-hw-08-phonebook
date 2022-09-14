@@ -1,44 +1,43 @@
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useMemo } from "react";
 import { nanoid } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 import styles from "./SingUpForm.module.scss";
 import { ReactComponent as Close } from "../../images/iconClose.svg";
+import { signup } from "../../redux/auth/auth-operations";
 
 export default function SingUpForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [state, setState] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  const { register, handleSubmit, reset, watch } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
   });
 
-  const { name, email, password, confirmPassword } = state;
-
-  const nameId = nanoid();
-  const emailId = nanoid();
-  const passwordId = nanoid();
-  const confirmPasswordId = nanoid();
-
-  const handleSubmit = (e) => {
+  const onSubmit = ({ name, email, password }, e) => {
     e.preventDefault();
-    e.target.reset(
-      setState({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      })
-    );
+    addUser({ name, email, password });
+    reset();
   };
 
-  const handleChange = ({ target }) => {
-    setState((prevState) => {
-      return { ...prevState, [target.name]: target.value };
-    });
-  };
+  function addUser(data) {
+    dispatch(signup(data));
+  }
+
+  const watchFieldPassword = watch("password");
+  const watchFieldConfirmPassword = watch("confirmPassword");
+
+  const nameId = useMemo(() => nanoid(), []);
+  const emailId = useMemo(() => nanoid(), []);
+  const passwordId = useMemo(() => nanoid(), []);
+  const confirmPasswordId = useMemo(() => nanoid(), []);
 
   return (
     <div className={styles.modal__container}>
@@ -48,56 +47,65 @@ export default function SingUpForm() {
           <Link to="" className={styles.closeBtn} onClick={() => navigate(-1)}>
             <Close />
           </Link>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor={nameId} className={styles.label}>
               <span>Name</span>
               <input
-                className={styles.input}
-                onChange={handleChange}
+                {...register("name", {
+                  required: true,
+                  pattern:
+                    /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+                })}
                 id={nameId}
+                className={styles.input}
                 type="name"
                 name="name"
-                value={name}
                 required
               />
             </label>
             <label htmlFor={emailId} className={styles.label}>
               <span>Email</span>
               <input
-                className={styles.input}
-                onChange={handleChange}
+                {...register("email", { required: true })}
                 id={emailId}
+                className={styles.input}
                 type="email"
                 name="email"
-                value={email}
                 required
               />
             </label>
             <label htmlFor={passwordId} className={styles.label}>
               <span>Password</span>
               <input
-                className={styles.input}
-                onChange={handleChange}
+                {...register("password", { required: true })}
                 id={passwordId}
+                className={styles.input}
                 type="password"
                 name="password"
-                value={password}
                 required
               />
             </label>
-            <label htmlFor={confirmPasswordId} className={styles.label}>
+            <label
+              {...register("confirmPassword", { required: true })}
+              htmlFor={confirmPasswordId}
+              className={styles.label}
+            >
               <span>confirm Password</span>
               <input
                 className={styles.input}
-                onChange={handleChange}
                 id={confirmPasswordId}
-                type="confirmPassword"
+                type="password"
                 name="confirmPassword"
-                value={confirmPassword}
                 required
               />
             </label>
-            <button className={styles.submit} type="submit">
+            <button
+              className={styles.submit}
+              type="submit"
+              disabled={
+                watchFieldPassword !== watchFieldConfirmPassword ? true : false
+              }
+            >
               Sign Up Now
             </button>
           </form>

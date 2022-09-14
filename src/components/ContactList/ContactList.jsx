@@ -26,13 +26,13 @@ const ContactList = () => {
 
   return (
     <>
-      <ul>
-        {contactsFilter.map(({ id, name, phone }) => {
+      <ul className={styles.list}>
+        {contactsFilter.map(({ id, name, number }) => {
           return (
             <li key={id} className={styles.item}>
               <div className={styles.itemThumb}>
                 <span>
-                  {name}: {phone}
+                  {name}: {number}
                 </span>
                 <PhonebookOptions
                   id={id}

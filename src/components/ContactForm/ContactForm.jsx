@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 
 import styles from "./ContactForm.module.scss";
@@ -10,13 +10,12 @@ import { postContactsOperations } from "../../redux/operations";
 export default function Form() {
   const [state, setState] = useState({
     name: "",
-    phone: "",
+    number: "",
   });
 
   const dispatch = useDispatch();
-  // const contacts = useSelector((state) => state.contacts.items);
 
-  const { name, phone } = state;
+  const { name, number } = state;
 
   const nameId = nanoid();
   const phoneId = nanoid();
@@ -27,7 +26,7 @@ export default function Form() {
     e.target.reset(
       setState({
         name: "",
-        phone: "",
+        number: "",
       })
     );
   };
@@ -69,10 +68,11 @@ export default function Form() {
           className={styles.field}
           onChange={handleChange}
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={phone}
+          placeholder="+3(99) 999-99-99"
+          value={number}
           required
         />
       </div>
