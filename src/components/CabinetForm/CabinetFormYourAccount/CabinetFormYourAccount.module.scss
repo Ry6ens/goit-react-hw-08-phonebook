@@ -1,0 +1,115 @@
+.cabinetYourAccount {
+    padding-top: 50px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+}
+
+.avatar {
+    padding-top: 24px;
+    padding-bottom: 16px;
+}
+
+.profileTitle {
+    font-weight: 600;
+}
+
+.profileChangePhoto {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 10px;
+}
+
+.profilePhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: transparent 50%/cover no-repeat;
+    background-color: rgba(57, 76, 96, 0.15);
+    background-clip: content-box;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 0px 6px;
+    height: 40px;
+    background-color: rgba(64, 87, 109, 0.07);
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    
+        &:hover,
+        :focus {
+            background-color: rgba(57, 76, 96, 0.15);
+        }
+}
+
+.btnOverLay {
+    display: flex;
+    gap: 20px;
+}
+
+.line {
+    padding: 16px 0 24px;
+}
+
+.lineStyles {
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid rgba(57, 76, 96, 0.15);
+    height: 1px;
+}
+
+.profileName {
+    display: flex;
+    padding-bottom: 16px;
+    justify-content: space-between;
+}
+
+.btnEdit {
+    padding: 0px 20px;
+    height: 40px;
+    background-color: rgba(64, 87, 109, 0.07);
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    
+        &:hover,
+        :focus {
+            background-color: rgba(57, 76, 96, 0.15);
+        }
+}
+
+.titleName,
+.titleEmail {
+    margin-top: 5px;
+}
+
+.btnLogOutOverLay {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btnLogOut {
+    padding: 0px 20px;
+    height: 40px;
+    background-color: rgba(64, 87, 109, 0.07);
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    &:hover, :focus {
+        background-color: rgba(57, 76, 96, 0.15);
+    }
+
+}

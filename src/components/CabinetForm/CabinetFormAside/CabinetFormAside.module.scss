@@ -1,0 +1,55 @@
+
+
+.cabinetFormAside {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.AryMsQ {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 16px;
+    width: 100%;
+}
+
+.bOskhw {
+    padding: 0 16px 0 8px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: transparent 50%/cover no-repeat;
+    background-color: rgba(57, 76, 96, 0.15);
+    background-clip: content-box;
+    box-sizing: border-box;
+    // background-image: url("https://profile.canva.com/users/UADt48i2lc0/avatars/1/200.jpg")
+}
+
+.avatarName {
+    font-weight: 600;
+}
+
+.yourAccount {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.yourAccountLogo {
+    margin-right: 12px;
+}
+
+.line {
+    padding: 16px 0 24px;
+}
+
+.lineStyles {
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid rgba(57, 76, 96, 0.15);
+    ;
+    height: 1px;
+}

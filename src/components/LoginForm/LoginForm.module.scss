@@ -88,6 +88,25 @@
         background: -webkit-linear-gradient(left, #b224ef, #7579ff);
     }
 }
+        
+    
+.submitSignUpOverLay {
+    margin-top: 245px;
+}
+
+.submitSignUp {
+    padding: 5px 10px;
+
+    color: #fff;
+
+    text-transform: uppercase;
+    font-size: 15px;
+    
+    border: 2px solid #fff;
+    border-radius: 30px;
+
+    cursor: pointer;
+}
 
 .forgotPass {
     margin-top: 15px;
@@ -153,7 +172,7 @@
         background-size: cover;
         transition: -webkit-transform 1.2s ease-in-out;
         transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
-    transform: translate3d(640px, 0, 0);
+        transform: translate3d(640px, 0, 0);
     }
 
     &:after {

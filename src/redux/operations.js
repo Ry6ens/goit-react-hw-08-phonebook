@@ -36,7 +36,6 @@ export const postContactsOperations = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const contact = await fetchPostContacts(data);
-      console.log(contact);
       return contact.data;
     } catch (error) {
       const { data, status } = error.response;
@@ -46,7 +45,7 @@ export const postContactsOperations = createAsyncThunk(
   {
     condition: (data, { getState }) => {
       const { contacts } = getState();
-      if (isDuplicate(data, contacts.items)) {
+      if (isDuplicate(data, contacts)) {
         Notiflix.Notify.warning(`${data.name} is already exists`);
         return false;
       }

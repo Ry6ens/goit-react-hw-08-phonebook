@@ -71,7 +71,7 @@ export default function Form() {
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          placeholder="+3(99) 999-99-99"
+          placeholder="+380 (99) 999-99-99"
           value={number}
           required
         />

@@ -1,9 +1,9 @@
 export const getFilterContacts = (state, payload) => {
-  if (state.contacts.items.length === 0) {
-    return state.contacts.items;
+  if (state.contacts.length === 0) {
+    return state.contacts;
   }
 
-  return state.contacts.items.filter((el) =>
-    el.name.toLowerCase().includes(state.contacts.filter.toLowerCase())
+  return state.contacts.filter((el) =>
+    el.name.toLowerCase().includes(state.filter.toLowerCase())
   );
 };

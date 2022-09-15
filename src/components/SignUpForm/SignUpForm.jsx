@@ -1,15 +1,13 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMemo } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import styles from "./SingUpForm.module.scss";
-import { ReactComponent as Close } from "../../images/iconClose.svg";
+import styles from "./SignUpForm.module.scss";
 import { signup } from "../../redux/auth/auth-operations";
 
-export default function SingUpForm() {
-  const navigate = useNavigate();
+export default function SignUpForm() {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, reset, watch } = useForm({
@@ -44,9 +42,6 @@ export default function SingUpForm() {
       <div className={styles.cont}>
         <div className={styles.formSignIn}>
           <h2 className={styles.titleH2}>Sign Up</h2>
-          <Link to="" className={styles.closeBtn} onClick={() => navigate(-1)}>
-            <Close />
-          </Link>
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor={nameId} className={styles.label}>
               <span>Name</span>
@@ -113,8 +108,15 @@ export default function SingUpForm() {
         <div className={styles.subCont}>
           <div className={styles.img}>
             <div className={styles.imgText}>
-              <h2 className={styles.titleH2}>New here?</h2>
-              <p>Sign Up and discover great amount of new opportunities!</p>
+              <h2 className={styles.titleH2}>One of us?</h2>
+              <p>
+                If you already has an account, just Log In. We've missed you!
+              </p>
+              <div className={styles.submitLogInOverLay}>
+                <Link to="/login" className={styles.submitLogIn}>
+                  Log In
+                </Link>
+              </div>
             </div>
           </div>
         </div>

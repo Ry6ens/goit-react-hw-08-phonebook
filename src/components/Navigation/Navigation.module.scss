@@ -53,3 +53,15 @@
     fill: #7579ff;
     stroke: #7579ff;
 }
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    // grid-template-columns: 10% 75% 10% 5%;
+    list-style: none;
+}
+
+.item {
+    display: flex;
+}

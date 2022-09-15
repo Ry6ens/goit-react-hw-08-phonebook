@@ -1,9 +1,9 @@
-import SingUpForm from "../components/SingUpForm/SingUpForm";
+import SignUpForm from "../components/SignUpForm/SignUpForm";
 
 export default function Register() {
   return (
     <>
-      <SingUpForm />
+      <SignUpForm />
     </>
   );
 }

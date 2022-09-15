@@ -5,7 +5,10 @@ export const instance = axios.create({
 });
 
 const setToken = (token = "") => {
-  instance.defaults.headers.authorization = `Bearer ${token}`;
+  if (token) {
+    return (instance.defaults.headers.authorization = `Bearer ${token}`);
+  }
+  instance.defaults.headers.authorization = "";
 };
 
 export const fetchSignUp = async (data) => {
@@ -16,8 +19,25 @@ export const fetchSignUp = async (data) => {
 
 export const fetchLogIn = async (data) => {
   const { data: result } = await instance.post("users/login", data);
-  console.log(result);
   setToken(result.token);
 
   return result;
+};
+
+export const fetchLogOut = async () => {
+  const { data: result } = await instance.post("users/logout");
+  setToken("");
+
+  return result;
+};
+
+export const fetchCurrent = async (token) => {
+  setToken(token);
+  try {
+    const { data: result } = await instance.get("users/current");
+    return result;
+  } catch (error) {
+    setToken("");
+    throw error;
+  }
 };

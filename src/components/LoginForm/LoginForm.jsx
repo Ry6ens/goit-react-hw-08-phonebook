@@ -1,15 +1,14 @@
-import { nanoid } from "@reduxjs/toolkit";
-import { useMemo } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import {} from "@reduxjs/toolkit";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import jwt_decode from "jwt-decode";
 
 import styles from "./LoginForm.module.scss";
-import { ReactComponent as Close } from "../../images/iconClose.svg";
-import { login } from "../../redux/auth/auth-operations";
+import { login, googleLogIn } from "../../redux/auth/auth-operations";
 
 export default function LoginForm() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { register, handleSubmit, reset } = useForm({
@@ -19,9 +18,27 @@ export default function LoginForm() {
     },
   });
 
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:
+        "472631042467-p0vitv9hkneo0l2s5bljos28dojdrcc2.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+    // google.accounts.id.prompt();
+
+    google.accounts.id.renderButton(document.getElementById("singInDiv"), {
+      theme: "outline",
+      type: "icon",
+      size: "large",
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const onSubmit = (data, e) => {
     e.preventDefault();
-    console.log(data);
     logInUser(data);
     reset();
   };
@@ -30,8 +47,10 @@ export default function LoginForm() {
     dispatch(login(data));
   }
 
-  const emailId = useMemo(() => nanoid(), []);
-  const passwordId = useMemo(() => nanoid(), []);
+  function handleCallbackResponse(response) {
+    const userObj = jwt_decode(response.credential);
+    dispatch(googleLogIn(userObj));
+  }
 
   return (
     <div className={styles.modal__container}>
@@ -39,37 +58,35 @@ export default function LoginForm() {
         <div className={styles.subCont}>
           <div className={styles.img}>
             <div className={styles.imgText}>
-              <h2 className={styles.titleH2}>One of us?</h2>
-              <p>
-                If you already has an account, just Log In. We've missed you!
-              </p>
+              <h2 className={styles.titleH2}>New here?</h2>
+              <p>Sign Up and discover great amount of new opportunities!</p>
+              <div className={styles.submitSignUpOverLay}>
+                <Link to="/register" className={styles.submitSignUp}>
+                  Sign Up
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
         <div className={styles.formLogIn}>
           <h2 className={styles.titleH2}>Log In</h2>
-          <Link to="" className={styles.closeBtn} onClick={() => navigate(-1)}>
-            <Close />
-          </Link>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor={emailId} className={styles.label}>
+            <label className={styles.label}>
               <span>Email</span>
               <input
                 {...register("email", { required: true })}
                 className={styles.input}
-                id={emailId}
                 type="email"
                 name="email"
                 required
               />
             </label>
-            <label htmlFor={passwordId} className={styles.label}>
+            <label className={styles.label}>
               <span>Password</span>
               <input
                 {...register("password", { required: true })}
                 className={styles.input}
-                id={passwordId}
                 type="password"
                 name="password"
                 required
@@ -85,6 +102,9 @@ export default function LoginForm() {
           <div className={styles.socialMedia}>
             <ul className={styles.socialMediaList}>
               <li>
+                <div id="singInDiv"></div>
+              </li>
+              {/* <li>
                 <img
                   src="https://raw.githubusercontent.com/abo-elnoUr/public-assets/master/facebook.png"
                   alt=""
@@ -107,7 +127,7 @@ export default function LoginForm() {
                   src="https://raw.githubusercontent.com/abo-elnoUr/public-assets/master/instagram.png"
                   alt=""
                 />
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
