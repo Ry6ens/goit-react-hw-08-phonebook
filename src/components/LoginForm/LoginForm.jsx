@@ -1,9 +1,9 @@
 import {} from "@reduxjs/toolkit";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 import styles from "./LoginForm.module.scss";
 import { login, googleLogIn } from "../../redux/auth/auth-operations";
@@ -18,24 +18,24 @@ export default function LoginForm() {
     },
   });
 
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:
-        "472631042467-p0vitv9hkneo0l2s5bljos28dojdrcc2.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
+  // useEffect(() => {
+  //   /* global google */
+  //   google.accounts.id.initialize({
+  //     client_id:
+  //       "472631042467-p0vitv9hkneo0l2s5bljos28dojdrcc2.apps.googleusercontent.com",
+  //     callback: handleCallbackResponse,
+  //   });
 
-    // google.accounts.id.prompt();
+  //   // google.accounts.id.prompt();
 
-    google.accounts.id.renderButton(document.getElementById("singInDiv"), {
-      theme: "outline",
-      type: "icon",
-      size: "large",
-    });
+  //   google.accounts.id.renderButton(document.getElementById("singInDiv"), {
+  //     theme: "outline",
+  //     type: "icon",
+  //     size: "large",
+  //   });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const onSubmit = (data, e) => {
     e.preventDefault();
@@ -47,10 +47,10 @@ export default function LoginForm() {
     dispatch(login(data));
   }
 
-  function handleCallbackResponse(response) {
-    const userObj = jwt_decode(response.credential);
-    dispatch(googleLogIn(userObj));
-  }
+  // function handleCallbackResponse(response) {
+  //   const userObj = jwt_decode(response.credential);
+  //   dispatch(googleLogIn(userObj));
+  // }
 
   return (
     <div className={styles.modal__container}>

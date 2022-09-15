@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
+import { useForm } from "react-hook-form";
 
 import styles from "./ContactForm.module.scss";
 import stylesButton from "../PhonebookOptions/PhonebookOptions.module.scss";
@@ -8,73 +7,49 @@ import PhonebookOptions from "../PhonebookOptions/PhonebookOptions";
 import { postContactsOperations } from "../../redux/operations";
 
 export default function Form() {
-  const [state, setState] = useState({
-    name: "",
-    number: "",
-  });
-
   const dispatch = useDispatch();
 
-  const { name, number } = state;
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      name: "",
+      number: "",
+    },
+  });
 
-  const nameId = nanoid();
-  const phoneId = nanoid();
-
-  const handleSubmit = (e) => {
+  const onSubmit = (data, e) => {
     e.preventDefault();
-    addContact(state);
-    e.target.reset(
-      setState({
-        name: "",
-        number: "",
-      })
-    );
-  };
-
-  const handleChange = ({ target }) => {
-    setState((prevState) => {
-      return { ...prevState, [target.name]: target.value };
-    });
-  };
-
-  function addContact(data) {
     dispatch(postContactsOperations(data));
-  }
+    reset();
+  };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.formGroup}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.formGroup}>
       <div className={styles.thumb}>
-        <label htmlFor={nameId} className={styles.label}>
-          Name
+        <label>
+          <span className={styles.labelTitle}>Name</span>
+          <input
+            {...register("name", { required: true })}
+            className={styles.field}
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            required
+          />
         </label>
-        <input
-          id={nameId}
-          className={styles.field}
-          onChange={handleChange}
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          value={name}
-          required
-        />
       </div>
       <div className={styles.thumb}>
-        <label htmlFor={phoneId} className={styles.label}>
-          Number
+        <label>
+          <span className={styles.labelText}>Number</span>
+          <input
+            {...register("number", { required: true })}
+            className={styles.field}
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            placeholder="+380 (99) 999-99-99"
+            required
+          />
         </label>
-        <input
-          id={phoneId}
-          className={styles.field}
-          onChange={handleChange}
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          placeholder="+380 (99) 999-99-99"
-          value={number}
-          required
-        />
       </div>
       <PhonebookOptions title="Add contact" className={stylesButton.button} />
     </form>

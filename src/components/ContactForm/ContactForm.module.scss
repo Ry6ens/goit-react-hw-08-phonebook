@@ -7,23 +7,29 @@
     gap: 20px;
     // align-items: center;
 
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 .thumb {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
-.label {
-    margin-bottom: 10px;
+.labelTitle {
+    margin-right: 25px;
+}
+
+.labelText {
+    margin-right: 10px;
 
 }
 
 .field {
     padding: 10px 5px;
+    width: 300px;
 
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }

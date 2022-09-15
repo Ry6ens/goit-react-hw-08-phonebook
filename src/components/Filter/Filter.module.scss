@@ -1,18 +1,22 @@
 .thumb {
-    display: flex;
-    flex-direction: column;
-
     width: 500px;
-    padding: 20px;
 }
 
 .label {
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .field {
     padding: 10px 5px;
 
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }

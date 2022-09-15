@@ -1,18 +1,40 @@
 .list {
-    list-style-type:  circle;
+    margin-top: 50px;
+    list-style: none;
+
+    border-left: 1px solid #ccc;
 }
 
 .item {
-    margin-bottom: 10px;
-
-
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
 }
 
 .itemThumb {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     &:last-child {
         margin-bottom: 0px;
     }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.infoName {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.infoNumber {
+    color: #4c00fec2;
+} 
+
+.btnRemove {
+    cursor: pointer;
 }

@@ -7,7 +7,7 @@ import PublicRoute from "./services/PublicRoute/PublicRoute";
 
 import { Container } from "./components/Container/Container";
 import Home from "./pages/Home";
-import Contacts from "./pages/Contacts";
+import Contacts from "./pages/Contacts/Contacts";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Header from "./components/Header/Header";

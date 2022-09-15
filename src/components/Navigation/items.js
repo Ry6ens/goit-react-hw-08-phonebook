@@ -18,10 +18,3 @@ export const items = [
     private: true,
   },
 ];
-
-// {
-//     id: "3",
-//     to: "/register",
-//     text: "Sign Up",
-//     private: false,
-//   }

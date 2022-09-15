@@ -7,7 +7,6 @@ import { instance } from "./apiAuth";
 // });
 
 export const fetchPostContacts = async (contact) => {
-  console.log(contact);
   return await instance.post("/contacts", contact);
 };
 
