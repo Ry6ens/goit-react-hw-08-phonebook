@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { instance } from "./apiAuth";
 
 export const fetchPostContacts = async (contact) => {
