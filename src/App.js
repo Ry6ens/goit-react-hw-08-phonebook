@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Header from "./components/Header/Header";
 import Cabinet from "./pages/Cabinet";
 import { getCurrent } from "./redux/auth/auth-operations";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ function App() {
   }, []);
 
   return (
+    // <div className="backdrop">
+    // {/* <div className="backdropGradient"> */ }
     <>
       <Header />
       <Container>
@@ -39,6 +42,9 @@ function App() {
         </Routes>
       </Container>
     </>
+
+    // </div>
+    // </div>
   );
 }
 

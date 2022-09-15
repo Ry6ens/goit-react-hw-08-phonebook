@@ -49,8 +49,8 @@ export const getCurrent = createAsyncThunk(
   "auth/current",
   async (_, { rejectWithValue, getState }) => {
     try {
-      const { contacts } = getState();
-      const result = await fetchCurrent(contacts.auth.token);
+      const { auth } = getState();
+      const result = await fetchCurrent(auth.token);
       return result;
     } catch (error) {
       rejectWithValue(error);
@@ -59,9 +59,9 @@ export const getCurrent = createAsyncThunk(
   },
   {
     condition: (_, { getState }) => {
-      const { contacts } = getState();
+      const { auth } = getState();
 
-      if (!contacts.auth.token) {
+      if (!auth.token) {
         return false;
       }
     },

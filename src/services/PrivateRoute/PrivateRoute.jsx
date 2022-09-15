@@ -8,5 +8,6 @@ export default function PrivateRoute() {
   if (!isAuth) {
     return <Navigate to="/goit-react-hw-08-phonebook" />;
   }
+
   return <Outlet />;
 }

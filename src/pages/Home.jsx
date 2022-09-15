@@ -1,15 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import LoginForm from "../components/LoginForm/LoginForm.jsx";
 import useAuth from "../services/hooks/useAuth";
 
 export default function Home() {
   const isAuth = useAuth();
-  const navigate = useNavigate();
 
-  if (isAuth) {
-    return navigate("/contacts", { replace: true });
-  }
+  // if (isAuth) {
+  //   return <Navigate to="/contacts" />;
+  // }
 
-  return <>{!isAuth && <LoginForm />}</>;
+  return (
+    <div className="backdrop">
+      <div className="backdropGradient">{!isAuth && <LoginForm />}</div>
+    </div>
+  );
 }
