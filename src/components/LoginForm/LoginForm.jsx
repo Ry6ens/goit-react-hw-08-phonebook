@@ -14,7 +14,7 @@ export default function LoginForm() {
     /* global google */
     google.accounts.id.initialize({
       client_id:
-        "472631042467-p0vitv9hkneo0l2s5bljos28dojdrcc2.apps.googleusercontent.com",
+        "160834485099-gokn0fab6bj7qdmo42gdgp116u78c1dt.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
 
